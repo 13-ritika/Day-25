@@ -1,0 +1,37 @@
+// recursion
+public class Main
+{
+	public static void main(String[] args) {
+		int arr[] = {9,3};
+		int sum = 12;
+		System.out.print(rec(sum,arr.length,arr));
+	}
+	public static boolean rec(int sum,int n, int arr[]){
+	    
+	    if(sum==0) return true;
+	    if(n==0) return false;
+	    if(arr[n-1]<=sum) return (rec(sum-arr[n-1],n-1,arr) || rec(sum,n-1,arr));
+	    else return rec(sum,n-1,arr);
+	}
+}
+
+// tabulation
+public class Main
+{
+	public static boolean rec(int sum,int n, int arr[]){
+	    boolean dp[][] = new boolean[n+1][sum+1]; // 2d as the value of n & sum is not constant
+	    for(int i=0;i<n+1;i++){
+         dp[i][0]= false;
+      }
+      for(int j=0;j<W+1;j++){
+         dp[0][j]= true;
+      }
+      for(int i=1;i<n+1;i++){
+         for(int j=1;j<W+1;j++){
+            if(arr[i-1<=j]) dp[i][j] = dp[i][j - arr[i-1] || dp[i-1][j];
+            else dp[i][j] = dp[i-1][j];
+         }
+      }
+	    return dp[n][sum];
+	}
+}
